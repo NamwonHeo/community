@@ -8,6 +8,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'materialize-sass'
 gem "letter_opener", :group => :development
+gem 'rails_admin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'

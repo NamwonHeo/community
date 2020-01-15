@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  authenticate :user, lambda { |u| u.has_role? :admin } do
+      begin
+        mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+      rescue
+        redirect_to new_user_session_path
+      end
+  end
   resources :posts
   devise_for :users
   root 'home#index'
