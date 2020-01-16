@@ -6,7 +6,9 @@ gem 'simple_form'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
-gem 'materialize-sass'
+gem 'bootstrap'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'jquery-rails'
 gem "letter_opener", :group => :development
 gem 'rails_admin'
 
