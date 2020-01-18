@@ -1,0 +1,2 @@
+module ManagerpostsHelper
+end

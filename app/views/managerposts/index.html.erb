@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Managerposts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <% if current_user.has_role? :admin %>
+        <th>Published</th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managerposts.each do |managerpost| %>
+      <tr>
+        <td><%= managerpost.title %></td>
+        <td><%= managerpost.content %></td>
+        <% if current_user.has_role? :admin %>
+          <td><%= managerpost.published %></td>
+        <% end %>
+        <td><%= link_to 'Show', managerpost %></td>
+        <% if can? :update, @managerpost %>
+          <td><%= link_to 'Edit', edit_managerpost_path(managerpost) %></td>
+        <% end %>
+        <% if can? :destroy, @managerpost %>
+          <td><%= link_to 'Destroy', managerpost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Managerpost', new_managerpost_path %>

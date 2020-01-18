@@ -12,6 +12,7 @@ class Ability
     		can :read, :all
     		can [:index, :show, :new, :create], Post
     		can [:edit, :update, :destroy], Post, user_id: user.id
+        can [:show, :index], Managerpost, user_id: user.id
     		# cannot [:index], Manage
     	else
     		can :read, :all

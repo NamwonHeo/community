@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :managerposts
   authenticate :user, lambda { |u| u.has_role? :admin } do
       begin
         mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
