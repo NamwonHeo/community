@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', managerposts_path %></button>
 <p>
-  <strong>Title:</strong>
-  <%= @managerpost.title %>
+  <strong><%= @managerpost.title %></strong>
 </p>
 
 <p>
@@ -16,7 +15,6 @@
     <strong>Published:</strong>
     <%= @managerpost.published %>
   </p>
-  <%= link_to 'Edit', edit_managerpost_path(@managerpost) %> |
-	<%= link_to 'Delete', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %> |
+  <button type="button" class="btn btn-outline-primary"><%= link_to 'Edit', edit_managerpost_path(@managerpost) %></button>
+  <button type="button" class="btn btn-outline-primary"><%= link_to 'Delete', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
 <% end %>
-  <%= link_to 'Back', managerposts_path %>

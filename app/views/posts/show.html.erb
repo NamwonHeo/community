@@ -1,4 +1,4 @@
-
+<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', posts_path %></button>
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -15,11 +15,9 @@
 </p>
 
 <% if can? :update, @post %>
-	<%= link_to '수정', edit_post_path(@post) %>
+  <button type="button" class="btn btn-outline-primary"><%= link_to '수정', edit_post_path(@post) %></button>
 <% end %>
 
 <% if can? :destroy, @post %>
-	<%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %>
+  <button type="button" class="btn btn-outline-primary"><%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
 <% end %>
-
-<%= link_to "뒤로 가기", posts_path %>
