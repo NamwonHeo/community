@@ -21,3 +21,5 @@
 <% if can? :destroy, @post %>
 	<%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %>
 <% end %>
+
+<%= link_to "뒤로 가기", posts_path %>
