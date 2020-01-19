@@ -6,7 +6,7 @@ class ManagerpostsController < ApplicationController
   # GET /managerposts
   # GET /managerposts.json
   def index
-    if current_user.has_role?(:admin)
+    if current_user && current_user.has_role?(:admin)
       @managerpost = Managerpost.all
     else
       @managerposts = Managerpost.published_managerposts

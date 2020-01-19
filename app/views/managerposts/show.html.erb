@@ -10,7 +10,7 @@
 </p>
 
 
-<% if current_user.has_role? :admin %>
+<% if current_user && current_user.has_role?(:admin) %>
   <p>
     <strong>Published:</strong>
     <%= @managerpost.published %>

@@ -5,13 +5,13 @@
 </p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @post.content %>
+  <strong>User:</strong>
+  <%= @post.user.present? ? @post.user.email : "n/a" %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @post.user.present? ? @post.user.email : "n/a" %>
+  <strong>Content:</strong>
+  <%= @post.content %>
 </p>
 
 <% if can? :update, @post %>
@@ -21,3 +21,18 @@
 <% if can? :destroy, @post %>
   <button type="button" class="btn btn-outline-primary"><%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
 <% end %>
+
+<% if current_user %>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_field :body %>
+    <%= f.submit "Comment" %>
+  <% end %>
+<% else %>
+  <p>You need to <%= link_to "Login", new_user_session_path %> before you can comment!</p>
+<% end %>
+
+<div id="comment_pane">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>

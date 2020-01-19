@@ -7,7 +7,9 @@ Rails.application.routes.draw do
         redirect_to new_user_session_path
       end
   end
-  resources :posts
+  resources :posts do
+    post 'comments', to:'comments#create'
+  end
   devise_for :users
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
