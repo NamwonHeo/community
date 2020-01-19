@@ -1,2 +1,10 @@
-[<%= comment.created_at.strftime("%I:%M %p") %>] <%= comment.user.username %>: <%= comment.body %>
-<br />
+<div id="comment-<%= comment.id %>">
+  [<%= comment.created_at.strftime("%I:%M %p") %>]<%= comment.user.username %>
+  <% if current_user && current_user == comment.user || current_user.has_role?(:admin) %>
+    <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, remote: true, style: 'float: right' %>
+  <% end %>
+  <hr />
+  <%= comment.body %>
+  <br />
+  <br />
+</div>

@@ -6,7 +6,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
     @comment.save
+  end
 
+  def destroy
+    @comment = @post.comments.find(params[:id])
+    @commnet_id = @comment.id
+    @comment.destroy
   end
 
   private

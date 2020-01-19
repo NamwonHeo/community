@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       end
   end
   resources :posts do
-    post 'comments', to:'comments#create'
+    # post 'comments', to:'comments#create'
+    resources :comments, only: [:create, :destroy]
   end
   devise_for :users
   root 'home#index'
