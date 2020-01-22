@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :posts do
     # post 'comments', to:'comments#create'
     resources :comments, only: [:create, :destroy]
+    member do
+      delete :delete_image_attachment
+    end
   end
   devise_for :users
   root 'home#index'

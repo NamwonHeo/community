@@ -9,6 +9,13 @@
   <%= @post.user.present? ? @post.user.email : "n/a" %>
 </p>
 
+<% (0...@post.images.count).each do |image| %>
+    <%= image_tag(@post.thumbnail(image)) %>
+    <% if can? :destroy, @post %>
+    <%= link_to "Remove", delete_image_attachment_post_url(@post.images[image]), method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+<% end %>
+
 <p>
   <strong>Content:</strong>
   <%= @post.content %>
