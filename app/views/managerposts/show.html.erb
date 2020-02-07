@@ -1,20 +1,21 @@
 <p id="notice"><%= notice %></p>
-<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', managerposts_path %></button>
-<p>
-  <strong><%= @managerpost.title %></strong>
-</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @managerpost.content %>
-</p>
-
-
-<% if current_user && current_user.has_role?(:admin) %>
-  <p>
-    <strong>Published:</strong>
-    <%= @managerpost.published %>
-  </p>
-  <button type="button" class="btn btn-outline-primary"><%= link_to 'Edit', edit_managerpost_path(@managerpost) %></button>
-  <button type="button" class="btn btn-outline-primary"><%= link_to 'Delete', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
-<% end %>
+<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', :back %></button>
+<br>
+<div class="managerpost">
+    <div class="title">
+      <h3><%= @managerpost.title %></h3>
+    </div>
+    <%= simple_format @managerpost.content %>
+    <div class="master-editor-btn" align="right">
+        <%= time_ago_in_words(@managerpost.created_at) %> ago &nbsp;
+        <% if current_user && current_user.has_role?(:admin) %>
+          <p>
+            <strong>Published:</strong>
+            <%= @managerpost.published %>
+          </p>
+          <button type="button" class="btn btn-outline-primary"><%= link_to 'Edit', edit_managerpost_path(@managerpost) %></button>
+          <button type="button" class="btn btn-outline-primary"><%= link_to 'Delete', @managerpost, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
+        <% end %>
+    </div>
+</div>

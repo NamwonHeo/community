@@ -1,43 +1,45 @@
-<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', posts_path %></button>
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', :back %></button>
+<br>
+<div class='post'>
+    <div class="title">
+      <h3><%= @post.title %></h3>
+    </div>
+    <div class="editor-btn" align="right">
+        <strong>Created by </strong>
+        <%= @post.user.present? ? @post.user.username : "an anonymous user" %> |
+        <%= time_ago_in_words(@post.created_at) %> ago &nbsp;
+      <% if can? :update, @post %>
+        <button type="button" class="btn btn-outline-primary"><%= link_to '수정', edit_post_path(@post) %></button>
+      <% end %>
+      <% if can? :destroy, @post %>
+        <button type="button" class="btn btn-outline-primary"><%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
+      <% end %>
+    </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user.present? ? @post.user.email : "n/a" %>
-</p>
-
-<% (0...@post.images.count).each do |image| %>
-    <%= image_tag(@post.thumbnail(image)) %>
-    <% if can? :destroy, @post %>
-    <%= link_to "Remove", delete_image_attachment_post_url(@post.images[image]), method: :delete, data: {confirm: "Are you sure?"} %>
+  <div class="content" align="center">
+    <% (0...@post.images.count).each do |image| %>
+        <%= image_tag(@post.thumbnail(image)) %>
+        <% if can? :destroy, @post %>
+        <%= link_to "Remove", delete_image_attachment_post_url(@post.images[image]), method: :delete, data: {confirm: "Are you sure?"} %>
+        <% end %>
     <% end %>
-<% end %>
+    <br/>
+    <%= simple_format @post.content %>
+  </div>
+</div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<% if can? :update, @post %>
-  <button type="button" class="btn btn-outline-primary"><%= link_to '수정', edit_post_path(@post) %></button>
-<% end %>
-
-<% if can? :destroy, @post %>
-  <button type="button" class="btn btn-outline-primary"><%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
-<% end %>
-
-<% if current_user %>
-  <%= form_with model: [@post, @comment] do |f| %>
-    <%= f.text_field :body %>
-    <%= f.submit "Comment" %>
+<hr>
+<div class="comment-area" align="center">
+  <% if current_user %>
+    <%= form_with model: [@post, @comment] do |f| %>
+      <%= f.text_field :body, input_html: { class: 'form-control' } %>
+      <%= f.submit "Comment" %>
+    <% end %>
+  <% else %>
+    <p>You need to <%= link_to "Login", new_user_session_path %> before you can comment!</p>
   <% end %>
-<% else %>
-  <p>You need to <%= link_to "Login", new_user_session_path %> before you can comment!</p>
-<% end %>
-
+</div>
+<br>
 <div id="comment_pane">
   <% @comments.each do |comment| %>
     <%= render 'comments/comment', comment: comment %>
