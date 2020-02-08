@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validate :image_type
+  paginates_per 10
 
   def thumbnail input
     return self.images[input].variant(resize: '300x300!').processed
