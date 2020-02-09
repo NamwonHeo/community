@@ -1,8 +1,9 @@
-
-<button type="button" class="btn btn-outline-primary"><%= link_to 'New Managerpost', new_managerpost_path %></button>
+<%= link_to new_managerpost_path do %>
+  <button type="button" class="btn btn-outline-primary">New</button>
+<% end %>
 <h1>Managerposts</h1>
 
-<table class="table">
+<table class="table" id="managerpost">
   <thead>
     <tr>
       <th>Title</th>

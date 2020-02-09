@@ -1,4 +1,6 @@
-<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', posts_path %></button>
+<%= link_to posts_path do %>
+  <button type="button" class="btn btn-outline-primary">back</button>
+<% end %>
 <br>
 <div class='post'>
     <div class="title">
@@ -9,10 +11,14 @@
         <%= @post.user.present? ? @post.user.username : "an anonymous user" %> |
         <%= time_ago_in_words(@post.created_at) %> ago &nbsp;
       <% if can? :update, @post %>
-        <button type="button" class="btn btn-outline-primary"><%= link_to '수정', edit_post_path(@post) %></button>
+        <%= link_to edit_post_path(@post) do %>
+          <button type="button" class="btn btn-outline-primary">edit</button>
+        <% end %>
       <% end %>
       <% if can? :destroy, @post %>
-        <button type="button" class="btn btn-outline-primary"><%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %></button>
+        <%= link_to @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } do %>
+          <button type="button" class="btn btn-outline-primary">delete</button>
+        <% end %>
       <% end %>
     </div>
 
@@ -20,7 +26,7 @@
     <% (0...@post.images.count).each do |image| %>
         <%= image_tag(@post.thumbnail(image)) %>
         <% if can? :destroy, @post %>
-        <%= link_to "Remove", delete_image_attachment_post_url(@post.images[image]), method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= link_to "Remove", delete_image_attachment_post_url(@post.images[image]), method: :delete, data: {confirm: "Are you sure?"} %>
         <% end %>
     <% end %>
     <br/>

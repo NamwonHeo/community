@@ -1,4 +1,9 @@
 <h1>Home#index</h1>
 
-<button class="btn btn-outline-primary btn-block"><%= link_to "Managerposts", managerposts_path %></button>
-<button class="btn btn-outline-primary btn-block"><%= link_to "Posts", posts_path %></button>
+<%= link_to managerposts_path do %>
+  <button class="btn btn-outline-primary btn-block">managerpost</button>
+<% end %>
+<br/>
+<%= link_to posts_path do %>
+  <button class="btn btn-outline-primary btn-block">post</button>
+<% end %>

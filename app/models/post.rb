@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   paginates_per 10
 
   def thumbnail input
-    return self.images[input].variant(resize: '300x300!').processed
+    return self.images[input].variant(resize: '300X300!').processed
     # code
   end
 
@@ -19,7 +19,7 @@ class Post < ApplicationRecord
   #    errors.add(:images, "are missing!")
   #  end
    images.each do |image|
-     if !image.content_type.in?(%('image/jpeg image/png'))
+     if !image.content_type.in?(%('image/jpeg image/png image/jpg'))
        errors.add(:images, 'needs to be a JPEG or PNG')
      end
    end

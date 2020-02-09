@@ -1,3 +1,5 @@
-<button type="button" class="btn btn-outline-primary"><%= link_to 'Back', managerposts_path %></button>
+<%= link_to managerposts_path do %>
+  <button type="button" class="btn btn-outline-primary">back</button>
+<% end %>
 <h1>Editing Managerpost</h1>
 <%= render 'form', managerpost: @managerpost %>

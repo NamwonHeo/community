@@ -19,3 +19,19 @@
 //= require bootstrap-sprockets
 
 $('.dropdown-toggle').dropdown()
+
+$(document).ready(function() {
+    $('#managerpost tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+    $('#post tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});

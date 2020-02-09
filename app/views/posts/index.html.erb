@@ -1,7 +1,11 @@
-<button type="button" class="btn btn-outline-primary"><%= link_to 'New Post', new_post_path %></button>
+<%= link_to new_post_path do %>
+  <button type="button" class="btn btn-outline-primary">new</button>
+<% end %>
+<br/>
+
 <h1>Posts</h1>
 
-<table class="table">
+<table class="table" id="post">
   <thead>
     <tr>
       <th>Title</th>
